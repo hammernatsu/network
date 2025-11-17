@@ -1,43 +1,10 @@
-# 🏠 豐河小窩的網路拓撲 / Home Network Topology
+# 🏠 家庭網路拓撲 / Home Network Topology
 
-> UniFi 網路架構文件
+> UniFi 全家桶網路架構文件
 
 ## 📊 網路拓撲圖
 
-```mermaid
-graph TD
-    ISP[ISP<br/>機櫃] --> UCG[UCG-Ultra<br/>書房<br/>主要網關]
-    UCG --> US8[US-8-PoE<br/>書房<br/>主交換機]
-    US8 --> U6P[U6-Pro<br/>客廳沙發<br/>WiFi 6 AP]
-    US8 --> FLEX[USW-Flex-Mini<br/>客廳電視櫃<br/>區域擴充]
-    US8 --> LITE8[USW-Lite-8-PoE<br/>書房<br/>區域擴充]
-    LITE8 --> U6L[U6-Lite<br/>書房<br/>WiFi 6 AP]
-    
-    style ISP fill:#e1f5ff
-    style UCG fill:#fff3e0
-    style US8 fill:#f3e5f5
-    style U6P fill:#e8f5e9
-    style U6L fill:#e8f5e9
-    style FLEX fill:#fff9c4
-    style LITE8 fill:#f3e5f5
-```
-
-<details>
-<summary>純文字版拓撲圖</summary>
-
-```
-ISP (機櫃)
-  ↓
-UCG-Ultra (書房) - 主要網關
-  ↓
-US-8-PoE (書房) - 主交換機
-  ├─ U6-Pro (客廳沙發) - PoE 供電
-  ├─ USW-Flex-Mini (客廳電視櫃) - 客廳區域擴充
-  └─ USW-Lite-8-PoE (書房) - 書房區域擴充
-      └─ U6-Lite (書房) - PoE 供電
-```
-
-</details>
+![Network Topology](./network-topology.png)
 
 ## 🖥️ 設備清單
 
@@ -68,10 +35,50 @@ US-8-PoE (書房) - 主交換機
 - **網路設備**: USW-Flex-Mini
 - **無線覆蓋**: U6-Pro
 - **用途**: 娛樂設備、智慧家居設備
+
+## ✨ 架構特色
+
+- ✅ **集中管理**: 核心設備集中於書房,便於維護
+- ✅ **充足供電**: 兩台 PoE 交換機提供足夠的 PoE 埠
+- ✅ **全屋覆蓋**: 雙 WiFi 6 AP 配置提供完整覆蓋
+- ✅ **擴充彈性**: 多台交換機提供充足的有線埠
+- ✅ **UniFi 生態**: 統一管理介面
+
+## 🏡 Home Assistant 整合
+
+### 規劃中的設備
+- 🌡️ **溫濕度感測器**: SONOFF SNZB-02 系列 / Aqara
+- 💡 **智慧燈泡**: Philips Wiz
+- 🔌 **智慧開關**: SONOFF Basic WW1-AC (Tasmota)
+- 📹 **監控攝影機**: UniFi Protect (需額外儲存設備)
+
+### 整合方式
+- **Zigbee 網路**: Zigbee2MQTT
+- **控制中心**: Home Assistant (部署於書房)
+
+## 🔒 安全性措施
+
+- [ ] 建立獨立的 IoT VLAN
+- [ ] 設定 IoT 專用 WiFi 網路
+- [ ] 限制 IoT 設備與主網路互通
+- [ ] 啟用 UniFi IDS/IPS 功能
+- [ ] 定期更新設備韌體
+
+## 📝 相關連結
+
+- [UniFi 官方網站](https://ui.com/)
+- [Home Assistant](https://www.home-assistant.io/)
+- [Zigbee2MQTT](https://www.zigbee2mqtt.io/)
+
 ---
 
 <div align="center">
 
 **📅 最後更新 / Last Updated**: 2025-11-17  
-<!-- 👤 維護者 / Maintainer**: [@hammernatsu](https://github.com/hammernatsu) -->
+**👤 維護者 / Maintainer**: [@hammernatsu](https://github.com/hammernatsu)
+
+Made with ❤️ for Smart Home
+
+[🔧 查看開發版本 (dev branch)](../../tree/dev)
+
 </div>
